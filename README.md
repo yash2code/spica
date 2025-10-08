@@ -2,11 +2,13 @@
 
 # Spica
 
-### AI-Planned, Scene-Exact Video Generation with Continuity
+### Generate Infinite Length Sora 2 Videos With Continuity
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-15.0-red.svg)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-red.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-b41914.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15.0-b41914.svg)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-b41914.svg)](https://www.typescriptlang.org/)
+
+<img width="1024" height="585" alt="image" src="https://github.com/user-attachments/assets/eff6015c-099f-463a-b2cf-b5d0758d789d" />
 
 ---
 
@@ -192,4 +194,5 @@ Made by [Kuber Mehta](https://kuber.studio/)
 [Twitter](https://x.com/Kuberwastaken) • [LinkedIn](https://www.linkedin.com/in/kubermehta/) • [Portfolio](https://kuber.studio/)
 
 </div>
+
 
