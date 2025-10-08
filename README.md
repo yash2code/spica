@@ -57,7 +57,7 @@ No installation required. Just enter your OpenAI API key and start creating.
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Kuberwastaken/spica
 cd spica
 ```
 
@@ -194,5 +194,6 @@ Made by [Kuber Mehta](https://kuber.studio/)
 [Twitter](https://x.com/Kuberwastaken) • [LinkedIn](https://www.linkedin.com/in/kubermehta/) • [Portfolio](https://kuber.studio/)
 
 </div>
+
 
 
