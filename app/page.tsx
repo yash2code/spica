@@ -236,7 +236,10 @@ export default function Home() {
         });
 
         if (!createResponse.ok) {
-          throw new Error(`Failed to create video for segment ${i + 1}`);
+          const errorData = await createResponse.json().catch(() => ({ error: 'Unknown error' }));
+          const errorMessage = errorData.error || 'Unknown error';
+          console.error(`Failed to create video for segment ${i + 1}:`, errorMessage);
+          throw new Error(`Failed to create video for segment ${i + 1}: ${errorMessage}`);
         }
 
         const job = await createResponse.json();

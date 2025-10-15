@@ -169,12 +169,44 @@ Return exactly ${numGenerations} segments.
     }
 
     if (inputReference) {
-      // Convert base64 data URL or regular URL to blob
-      const response = await fetch(inputReference);
-      const blob = await response.blob();
-      // Determine filename based on blob type
-      const extension = blob.type.includes('png') ? 'png' : 'jpg';
-      formData.append('input_reference', blob, `reference.${extension}`);
+      try {
+        let blob: Blob;
+        
+        // Check if it's a base64 data URL
+        if (inputReference.startsWith('data:')) {
+          // Extract the base64 content and mime type
+          const matches = inputReference.match(/^data:(.+?);base64,(.+)$/);
+          if (!matches) {
+            throw new Error('Invalid base64 data URL format');
+          }
+          
+          const mimeType = matches[1];
+          const base64Data = matches[2];
+          
+          // Convert base64 to binary
+          const binaryString = atob(base64Data);
+          const bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          
+          blob = new Blob([bytes], { type: mimeType });
+        } else {
+          // Regular URL - fetch it
+          const response = await fetch(inputReference);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch input reference: ${response.statusText}`);
+          }
+          blob = await response.blob();
+        }
+        
+        // Determine filename based on blob type
+        const extension = blob.type.includes('png') ? 'png' : 'jpg';
+        formData.append('input_reference', blob, `reference.${extension}`);
+      } catch (error: any) {
+        console.error('Error processing input reference:', error);
+        throw new Error(`Failed to process input reference: ${error.message}`);
+      }
     }
 
     const apiKey = this.client.apiKey;
@@ -189,6 +221,7 @@ Return exactly ${numGenerations} segments.
 
     if (!videoResponse.ok) {
       const errorText = await videoResponse.text();
+      console.error('Create video API error:', errorText);
       throw new Error(`Create video failed: HTTP ${videoResponse.status}\n${errorText}`);
     }
 

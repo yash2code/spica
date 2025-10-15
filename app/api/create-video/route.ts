@@ -13,12 +13,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log('Creating video with:', {
+      model,
+      size,
+      seconds,
+      promptLength: prompt.length,
+      hasInputReference: !!inputReference,
+    });
+
     const client = new SoraClient(apiKey);
     const job = await client.createVideo(prompt, size, seconds, model, inputReference);
 
+    console.log('Video job created:', job.id);
     return NextResponse.json(job);
   } catch (error: any) {
     console.error('Create video error:', error);
+    console.error('Error stack:', error.stack);
     return NextResponse.json(
       { error: error.message || 'Failed to create video' },
       { status: 500 }
